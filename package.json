@@ -1,6 +1,6 @@
 {
   "name": "react-lead-page",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "private": false,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
