@@ -1,14 +1,11 @@
 import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import FavoriteIcon from '@material-ui/icons/Favorite';
 import Typography from '@material-ui/core/Typography';
 import { createStyles, withStyles } from '@material-ui/core/styles';
-import Image from './product.jpg'; // Import using relative path
 import { withRouter } from 'react-router-dom';
 import firebase from 'firebase';
 import 'firebase/firestore';
@@ -18,12 +15,11 @@ const useStyles = createStyles((theme) => ({
     height: '100vh',
   },
   image: {
-    backgroundImage: `url(${Image})`,//url(https://images.unsplash.com/photo-1540076156429-35ffe82b7870)',
     backgroundRepeat: 'no-repeat',
     paddingTop: "20%",
     backgroundColor:
       theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
-    backgroundSize: 'contain',
+    backgroundSize: 'cover',
     backgroundPosition: 'center',
   },
   paper: {
@@ -31,10 +27,6 @@ const useStyles = createStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: '100%', // Fix IE 11 issue.
@@ -49,19 +41,9 @@ class SignInSide extends React.Component {
   constructor(props) {
     super(props);
 
-    var firebaseConfig = {
-      apiKey: "AIzaSyA8t2_BtP7XcW7ZB2g5zkEUlzefps2o2dQ",
-      authDomain: "relguide.firebaseapp.com",
-      projectId: "relguide",
-      storageBucket: "relguide.appspot.com",
-      messagingSenderId: "1003592247935",
-      appId: "1:1003592247935:web:d7e25d9866e2eb51c16d4a",
-      measurementId: "G-ZV9R842E0V"
-    };
     // Initialize Firebase
-    console.log("Initialize firebase");
     if (firebase.apps.length === 0) {
-      firebase.initializeApp(firebaseConfig);
+      firebase.initializeApp(this.props.firebaseConfig);
       firebase.analytics();
     }
 
@@ -71,8 +53,8 @@ class SignInSide extends React.Component {
   }
 
   redirect() {
-    console.log("redirect");
-    this.props.history.push('/freerelationshipguide'); // <--- The page you want to redirect your user to.
+    const target = `/${this.props.productname}`;
+    this.props.history.push(target); // <--- The page you want to redirect your user to.
   }
 
   submitForm(e) {
@@ -82,7 +64,7 @@ class SignInSide extends React.Component {
     const doc = email;
     console.log(name, email, doc);
 
-    this.db.collection("users").doc(doc).set({
+    this.db.collection(this.props.firestoreCollection).doc(doc).set({
       name: name,
       email: email
     })
@@ -94,19 +76,17 @@ class SignInSide extends React.Component {
 
   render() {
     const { classes } = this.props;
-
     return (
       <div>
         <Grid container component="main" className={classes.root}>
           <CssBaseline />
-          <Grid item xs={false} sm={4} md={7} className={classes.image} />
+          <Grid item xs={false} sm={4} md={7}
+            style={{ backgroundImage: `url(${this.props.productImageUrl})` }}
+            className={classes.image} />
           <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
             <div className={classes.paper}>
-              <Avatar className={classes.avatar}>
-                <FavoriteIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Free Gift - The Ultimate Relationship Guide
+              <Typography component="h1" variant="h6">
+                {this.props.title}
               </Typography>
               <form className={classes.form} onSubmit={this.submitForm.bind(this)}>
                 <TextField
@@ -130,16 +110,15 @@ class SignInSide extends React.Component {
                   name="email"
                   autoComplete="email"
                 />
-
                 <Button
                   type="submit"
                   fullWidth
                   variant="contained"
-                  color="secondary"
+                  color="primary"
                   className={classes.submit}
                 >
-                  Download Now
-            </Button>
+                  {this.props.submitButtonText}
+                </Button>
               </form>
             </div>
           </Grid>
