@@ -1,7 +1,7 @@
 {
   "name": "react-lead-page",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.2.0",
+  "private": false,
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
@@ -38,5 +38,27 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "LeadCapturePage.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anmolkohli18/react-lead-page.git"
+  },
+  "keywords": [
+    "react",
+    "lead",
+    "page",
+    "pages",
+    "landing",
+    "capture",
+    "lead"
+  ],
+  "author": "Anmol Kohli",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anmolkohli18/react-lead-page/issues"
+  },
+  "homepage": "https://github.com/anmolkohli18/react-lead-page#readme"
 }
