@@ -29,7 +29,6 @@ class LeadCapturePage extends React.Component {
                     </Switch>
                 </div>
             </Router>
-
         );
     }
 }
