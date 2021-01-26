@@ -41,7 +41,16 @@
   },
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
   "main": "src/LeadCapturePage.js",
-  "devDependencies": {},
+  "publish:npm": "rm -rf dist && mkdir dist &&  babel src/ -d dist --copy-files",
+  "babel": {
+    "presets": [
+      "@babel/preset-react"
+    ]
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.10",
+    "@babel/preset-react": "^7.12.10"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/anmolkohli18/react-lead-page.git"
