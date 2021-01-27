@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import LeadCapturePage from './LeadCapturePage';
+import FreeOffer from './FreeOffer';
+import SignInSide from './SignInSide';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+/*ReactDOM.render(
   <React.StrictMode>
     <LeadCapturePage />
   </React.StrictMode>,
   document.getElementById('root')
-);
+);*/
+
+export SignInSide;
+export FreeOffer;
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
