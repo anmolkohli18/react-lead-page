@@ -53,7 +53,7 @@ class SignInSide extends React.Component {
   }
 
   redirect() {
-    const target = `/${this.props.productname}`;
+    const target = `/${this.props.successRoute}`;
     this.props.history.push(target); // <--- The page you want to redirect your user to.
   }
 
