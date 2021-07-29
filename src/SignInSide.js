@@ -62,7 +62,7 @@ class SignInSide extends React.Component {
     const email = e.target.email.value;
     const name = e.target.name.value;
     const doc = email;
-    console.log(name, email, doc);
+    console.log(name, email, doc, this.props.firestoreCollection);
 
     this.db.collection(this.props.firestoreCollection).doc(doc).set({
       name: name,
